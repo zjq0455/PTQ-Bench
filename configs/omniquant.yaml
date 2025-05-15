@@ -1,0 +1,14 @@
+model: /share/llama-7b
+epochs: 20
+output_dir: OmniQuant/log/llama-7b
+
+wbits: 3
+abits: 16
+
+lwc: true         # flag 参数
+eval_ppl: true    # flag 参数
+
+nsamples: 128
+ckpt: /share/LLM_EVAL/OmniQuant/test.pt
+
+cuda_visible_devices: "1"

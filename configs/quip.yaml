@@ -1,0 +1,13 @@
+model_path: /share/llama-7b
+dataset: c4
+wbits: 3
+quant: ldlq
+
+pre_gptqH: true
+pre_rescale: true
+pre_proj: true
+pre_proj_extra: 1
+
+qfn: 'b'
+save_path: /share/LLM_EVAL/QuIP/llama-v1.5-7b-w3
+CUDA_VISIBLE_DEVICES: "1"

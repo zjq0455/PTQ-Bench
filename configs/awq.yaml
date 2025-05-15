@@ -1,0 +1,10 @@
+model_path: /share/llama-7b
+model_name: llama-7b
+
+w_bit: 4
+q_group_size: 128
+
+run_awq: true
+q_backend: fake
+tasks: wikitext
+awq_cache_dir: awq_cache

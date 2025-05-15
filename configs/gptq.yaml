@@ -1,0 +1,6 @@
+model_path: /share/llama-7b  
+dataset: c4
+wbits: 2
+save_path: /share/LLM_EVAL/GPTQ/llama-7b-2
+act_order: true
+CUDA_VISIBLE_DEVICES: "1"
