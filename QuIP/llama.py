@@ -530,15 +530,6 @@ if __name__ == '__main__':
         quantizers = llama_sequential(model, dataloader, DEV, args)
         print(time.time() - tick)
 
-    # if args.benchmark:
-    #     gpus = [torch.device('cuda:%d' % i) for i in range(torch.cuda.device_count())]
-    #     if len(gpus) > 1:
-    #         llama_multigpu(model, gpus, gpu_dist)
-    #     else:
-    #         model = model.to(DEV)
-    #     if args.benchmark:
-    #         input_ids = next(iter(dataloader))[0][:, :args.benchmark]
-    #         benchmark(model, input_ids, check=args.check)
     if args.save:
         # llama_pack(model, quantizers, args.wbits, args.groupsize)
         from transformers import AutoTokenizer
@@ -571,15 +562,3 @@ if __name__ == '__main__':
         with torch.no_grad():
             generated_ids = model.generate(input_ids, streamer=streamer)
 
-    # if args.quant_directory is not None:
-    #     export_quant_table(quantizers, args.quant_directory)
-
-
-        # torch.save(model.state_dict(), args.save)
-
-    # if args.save_safetensors:
-    #     llama_pack(model, quantizers, args.wbits, args.groupsize)
-    #     from safetensors.torch import save_file as safe_save
-    #     state_dict = model.state_dict()
-    #     state_dict = {k: v.clone().contiguous() for k, v in state_dict.items()}
-    #     safe_save(state_dict, args.save_safetensors)

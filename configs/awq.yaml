@@ -1,4 +1,4 @@
-model_path: /share/llama-7b
+model_path: /path/to/llama-7b
 model_name: llama-7b
 
 w_bit: 4

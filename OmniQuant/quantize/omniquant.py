@@ -102,20 +102,14 @@ def omniquant(
     layers[0] = layers[0].to(dev)
     if args.deactive_amp and args.epochs>0:
         dtype = torch.float
-        # print("bfloat16")
-        # dtype = torch.bfloat16
         traincast = nullcontext
     else:
-        # dtype = torch.float16
-        print("float16")
         dtype = torch.float16
         traincast = torch.cuda.amp.autocast
     inps = torch.zeros(
         (args.nsamples, lm.seqlen, model.config.hidden_size), dtype=dtype, device=dev
     )
     cache = {"i": 0}
-    # import pdb
-    # pdb.set_trace()
     # catch the first layer input
     class Catcher(nn.Module):
         def __init__(self, module):
@@ -184,7 +178,6 @@ def omniquant(
         position_ids = cache["position_ids"]
     else:
         position_ids = None
-    # position_ids = None # deepseek
 
 
     if args.resume:
@@ -286,7 +279,7 @@ def omniquant(
                 logger.info(f"layer {i} iter {epochs} loss:{loss_mean} norm:{norm_mean} max memory_allocated {torch.cuda.max_memory_allocated(lm._device) / 1024**2} ")
             clear_temp_variable(qlayer)
             del optimizer
-        qlayer.half()  # deepseek注释了
+        qlayer.half()
         # real smooth and quantization
         smooth_and_quant_inplace(qlayer, args, is_llama)
         if args.epochs>0:

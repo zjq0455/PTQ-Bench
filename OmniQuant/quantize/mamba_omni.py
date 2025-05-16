@@ -52,8 +52,6 @@ def omniquant(
     # move embedding layer and first layer to target device
     model = lm.model
     dev = lm.device
-    # use_cache = model.config.use_cache
-    # model.config.use_cache = False
     is_llama = False
     if 'mixtral' in args.net.lower() or "mistral" in args.net.lower() or "llava" in args.net.lower() or "vila" in args.model.lower() or 'deepseek' in args.model.lower():
         is_llama = True   # same to llama except ffn
@@ -147,8 +145,6 @@ def omniquant(
                         fp_inps[j] = qlayer(fp_inps[j].unsqueeze(0))[0]
                         if args.aug_loss:
                             fp_inps_2[j] = qlayer(quant_inps[j].unsqueeze(0))[0]
-        # add mean
-        # fp_mean = torch.mean(fp_inps, dim=1) # 128,4096
         # init smooth parameters
         set_quant_state(qlayer, weight_quant=False, act_quant=True)  # weight will be manually quantized before forward
         qlayer.let = args.let
@@ -194,7 +190,6 @@ def omniquant(
                 logger.info(f"layer {i} iter {epochs} loss:{loss_mean} norm:{norm_mean} max memory_allocated {torch.cuda.max_memory_allocated(lm._device) / 1024**2} ")
             clear_temp_variable(qlayer)
             del optimizer
-        # qlayer.half() 
         # real smooth and quantization
         smooth_and_quant_inplace(qlayer, args, is_llama)
         if args.epochs>0:

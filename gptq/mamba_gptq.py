@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 def get_mamba(model):
     model = MambaLMHeadModel.from_pretrained(pretrained_model_name=model,dtype=torch.bfloat16, device="cuda")
-    tokenizer = AutoTokenizer.from_pretrained('/share/gpt-neox-20b')
+    tokenizer = AutoTokenizer.from_pretrained('/path/to/gpt-neox-20b')
     model.seqlen = 2048
     return model, tokenizer
 

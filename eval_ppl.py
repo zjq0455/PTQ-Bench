@@ -147,7 +147,7 @@ if __name__ == '__main__':
     if "mamba" in args.model.lower():
         from mamba_ssm.models.mixer_seq_simple import MambaLMHeadModel
         model = MambaLMHeadModel.from_pretrained(pretrained_model_name=args.model, dtype=torch.bfloat16, device="cuda")
-        tokenizer = AutoTokenizer.from_pretrained('/share/gpt-neox-20b')
+        tokenizer = AutoTokenizer.from_pretrained('/path/to/gpt-neox-20b')
         model.seqlen = args.seqlen
         model.eval()
         mamba_eval(model, args, tokenizer, device=torch.device("cuda:0"))

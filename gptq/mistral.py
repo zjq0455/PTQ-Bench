@@ -308,26 +308,20 @@ if __name__ == '__main__':
     model = get_mixtral(args.model)
     model.eval()
 
-    # dataloader, testloader = get_loaders(
-    #     args.dataset, nsamples=args.nsamples, seed=args.seed, model=args.model, seqlen=model.seqlen
-    # )
+    dataloader, testloader = get_loaders(
+        args.dataset, nsamples=args.nsamples, seed=args.seed, model=args.model, seqlen=model.seqlen
+    )
 
     if args.wbits < 16 and not args.nearest:
         tick = time.time()
-        # quantizers = mistral_sequential(model, dataloader, DEV, args)
+        quantizers = mixtral_sequential(model, dataloader, DEV, args)
         print(time.time() - tick)
-    # if args.ckpt:
-    #     model.save_pretrained(args.ckpt)
-    #     tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=False,legacy=False)
-    #     tokenizer.save_pretrained(args.ckpt)
-    # torch.save(model.state_dict(), args.ckpt)
-    # tokenizer = AutoTokenizer.from_pretrained("/share/deepseek-moe-16b-base")
     datasets = ['wikitext2', 'c4'] 
     if args.new_eval:
         datasets = ['wikitext2', 'ptb-new', 'c4-new']
     for dataset in datasets:
         dataloader, testloader = get_loaders(
-            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen, tokenizer=tokenizer
+            dataset, seed=args.seed, model=args.model, seqlen=model.seqlen
         )
         print(dataset)
         if dataset == 'c4':

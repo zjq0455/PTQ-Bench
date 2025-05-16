@@ -1,4 +1,4 @@
-model: /share/llama-7b
+model: /path/tollama-7b
 epochs: 20
 output_dir: OmniQuant/log/llama-7b
 
@@ -9,6 +9,6 @@ lwc: true
 eval_ppl: true    
 
 nsamples: 128
-ckpt: /share/LLM_EVAL/OmniQuant/test.pt
+ckpt: /path/to/OmniQuant/test.pt
 
 cuda_visible_devices: "1"

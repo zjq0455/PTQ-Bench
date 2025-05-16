@@ -15,7 +15,7 @@ def set_seed(seed):
 
 def get_pile(nsamples, seed, seqlen, model, tokenizer):
     print("get_pile")
-    traindata = load_dataset("json", data_files='/cpfs01/user/chenmengzhao/prompt_quantization/val.jsonl.zst', split="train")
+    traindata = load_dataset("json", data_files='/path/to/val.jsonl.zst', split="train")
     if tokenizer is None:
         tokenizer = AutoTokenizer.from_pretrained(model, use_fast=False)
     trainenc = tokenizer("\n\n".join(traindata['text'][:1000]), return_tensors='pt')
@@ -78,10 +78,10 @@ def get_ptb(nsamples, seed, seqlen, model, tokenizer=None):
 def get_c4(nsamples, seed, seqlen, model, tokenizer=None):
     print("get_c4")
     traindata = load_dataset(
-        'json', data_files={'train': '/mnt/data/share/datasets/c4/en/c4-train.00000-of-01024.json'}, split='train'
+        'json', data_files={'train': '/path/to/c4/en/c4-train.00000-of-01024.json'}, split='train'
     )
     valdata = load_dataset(
-        'json', data_files={'validation': '/mnt/data/share/datasets/c4/en/c4-validation.00000-of-00008.json'}, split='validation'
+        'json', data_files={'validation': '/path/to/c4/en/c4-validation.00000-of-00008.json'}, split='validation'
     )
 
     if tokenizer is None:
@@ -143,10 +143,10 @@ def get_ptb_new(nsamples, seed, seqlen, model, tokenizer):
 def get_c4_new(nsamples, seed, seqlen, model, tokenizer=None):
     print("get_c4_new")
     traindata = load_dataset(
-        'json', data_files={'train': '/mnt/data/share/datasets/c4/en/c4-train.00000-of-01024.json'}, split='train'
+        'json', data_files={'train': '/path/to/c4/en/c4-train.00000-of-01024.json'}, split='train'
     )
     valdata = load_dataset(
-        'json', data_files={'validation': '/mnt/data/share/datasets/c4/en/c4-validation.00000-of-00008.json'}, split='validation'
+        'json', data_files={'validation': '/path/to/c4/en/c4-validation.00000-of-00008.json'}, split='validation'
     )
     if tokenizer is None:
         tokenizer = AutoTokenizer.from_pretrained(model, use_fast=False)

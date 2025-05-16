@@ -7,7 +7,7 @@ def get_calib_dataset(data="pileval", tokenizer=None, n_samples=512, block_size=
         dataset = load_dataset("mit-han-lab/pile-val-backup", split="validation")
     elif data == 'c4':
         dataset = load_dataset(
-        'json', data_files={'train': '/mnt/data/share/datasets/c4/en/c4-train.00000-of-01024.json'}, split='train'
+        'json', data_files={'train': '/path/to/c4/en/c4-train.00000-of-01024.json'}, split='train'
     )
     else:
         raise NotImplementedError

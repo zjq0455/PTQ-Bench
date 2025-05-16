@@ -1,4 +1,4 @@
-model_path: /share/llama-7b
+model_path: /path/tollama-7b
 dataset: c4
 wbits: 3
 quant: ldlq
@@ -9,5 +9,5 @@ pre_proj: true
 pre_proj_extra: 1
 
 qfn: 'b'
-save_path: /share/LLM_EVAL/QuIP/llama-v1.5-7b-w3
+save_path: /path/to/QuIP/llama-v1.5-7b-w3
 CUDA_VISIBLE_DEVICES: "1"

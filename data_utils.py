@@ -79,10 +79,10 @@ def get_ptb(nsamples, seed, seqlen, model, tokenizer=None):
 def get_c4(nsamples, seed, seqlen, model, tokenizer=None):
     print("get_c4")
     traindata = load_dataset(
-        'json', data_files={'train': '/mnt/data/share/datasets/c4/en/c4-train.00000-of-01024.json.gz'}, split='train'
+        'json', data_files={'train': '/path/to/c4/en/c4-train.00000-of-01024.json.gz'}, split='train'
     )
     valdata = load_dataset(
-        'json', data_files={'validation': '/mnt/data/share/datasets/c4/en/c4-validation.00000-of-00008.json.gz'}, split='validation'
+        'json', data_files={'validation': '/path/to/c4/en/c4-validation.00000-of-00008.json.gz'}, split='validation'
     )
 
     if tokenizer is None:
@@ -144,10 +144,10 @@ def get_ptb_new(nsamples, seed, seqlen, model, tokenizer=None):
 def get_c4_new(nsamples, seed, seqlen, model, tokenizer=None):
     print("get_c4_new")
     traindata = load_dataset(
-        'json', data_files={'train': '/mnt/data/share/datasets/c4/en/c4-train.00000-of-01024.json.gz'}, split='train'
+        'json', data_files={'train': '/path/to/c4/en/c4-train.00000-of-01024.json.gz'}, split='train'
     )
     valdata = load_dataset(
-        'json', data_files={'validation': '/mnt/data/share/datasets/c4/en/c4-validation.00000-of-00008.json.gz'}, split='validation'
+        'json', data_files={'validation': '/path/to/c4/en/c4-validation.00000-of-00008.json.gz'}, split='validation'
     )
     if tokenizer is None:
         tokenizer = AutoTokenizer.from_pretrained(model, use_fast=False)

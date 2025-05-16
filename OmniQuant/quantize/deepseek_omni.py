@@ -112,8 +112,7 @@ def omniquant(
         (args.nsamples, lm.seqlen, model.config.hidden_size), dtype=dtype, device=dev
     )
     cache = {"i": 0}
-    # import pdb
-    # pdb.set_trace()
+
     # catch the first layer input
     class Catcher(nn.Module):
         def __init__(self, module):
@@ -285,14 +284,11 @@ def omniquant(
                 logger.info(f"layer {i} iter {epochs} loss:{loss_mean} norm:{norm_mean} max memory_allocated {torch.cuda.max_memory_allocated(lm._device) / 1024**2} ")
             clear_temp_variable(qlayer)
             del optimizer
-        # qlayer.half()  # deepseek注释了
         # real smooth and quantization
         smooth_and_quant_inplace(qlayer, args, is_llama)
         if args.epochs>0:
             # update input of quantization model
             with torch.no_grad():
-                # with torch.cuda.amp.autocast():
-                # with traincast():
                 for j in range(args.nsamples):
                     quant_inps[j] = qlayer(quant_inps[j].unsqueeze(0), attention_mask=attention_mask,position_ids=position_ids)[0]
             register_scales_and_zeros(qlayer)
