@@ -1,6 +1,6 @@
 # 🔬 PTQ-Bench
 
-This repository contains the evaluation codes for the paper [Benchmarking Post-Training Quantization in LLMs: Comprehensive Taxonomy, Unified Evaluation, and Comparative Analysis]. Each method (**GPTQ**, **AWQ**, **OmniQuant**, and **QuIP**) is modularized, configurable via YAML, and supports streamlined evaluation via a common launcher.
+This repository contains the evaluation codes for the paper **[Benchmarking Post-Training Quantization in LLMs: Comprehensive Taxonomy, Unified Evaluation, and Comparative Analysis]**. Each method (**GPTQ**, **AWQ**, **OmniQuant**, and **QuIP**) is modularized, configurable via YAML, and supports streamlined evaluation via a common launcher.
 
 ---
 
